@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  delivery:
+    build:
+      context: .
+      dockerfile: delivery_service/Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - payment
+    environment:
+      - DATABASE_URL=sqlite:///./test.db 
+    container_name: delivery_service
+
+  payment:
+    build:
+      context: .
+      dockerfile: payment_service/Dockerfile
+    container_name: payment_service
+    ports:
+      - "8081:80"
+    environment:
+      - DATABASE_URL=sqlite:///./payment.db
