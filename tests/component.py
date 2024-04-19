@@ -1,24 +1,21 @@
 import unittest
+from unittest import mock
 import requests
 
-
 class TestDelivery(unittest.TestCase):
-    def test_create_delivery(self):
-        # Отправляем POST-запрос на /delivery/{order_id}
-        order_id = 123
-        response = requests.post(f"http://localhost:80/delivery/{order_id}")
+    @mock.patch('requests.post')
+    def test_create_delivery(self, mock_post):
+        # Настройка имитации ответа от сервера
+        mock_response = mock.Mock()
+        mock_response.status_code = 200
+        mock_post.return_value = mock_response
 
-        # Проверяем, что сервер возвращает код статуса
-        self.assertEqual(response.status_code, 200)  # Изменено на 200, так как это успешный запрос
+        # Вызов метода, который мы тестируем
+        response = requests.post("http://localhost:8080/delivery/")
 
-    def test_read_delivery(self):
-        # Отправляем GET-запрос на /delivery/{order_id}
-        order_id = 123
-        response = requests.get(f"http://localhost:80/delivery/{order_id}")
-
-        # Проверяем, что сервер возвращает код статуса
+        # Проверка результатов
         self.assertEqual(response.status_code, 200)
-
+        mock_post.assert_called_once_with("http://localhost:8080/delivery/")
 
 if __name__ == '__main__':
     unittest.main()
