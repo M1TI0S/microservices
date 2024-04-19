@@ -13,7 +13,7 @@ from sqlalchemy.exc import IntegrityError
 class TestDeliveryService(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # Создаем тестовую базу данных SQLite и сессию SQLAlchemy
+        # Создаем тестовую базу данных SQLite и сессию SQLAlchemy.
         cls.engine = create_engine("sqlite:///:memory:")
         SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=cls.engine)
         cls.session = SessionLocal()
