@@ -10,6 +10,6 @@ COPY ./payment_service /code
 
 COPY ./payment_service/payment.db /code/payment.db
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["python", "payment_service.py"]
