@@ -138,4 +138,4 @@ def read_delivery(order_id: int):
     return {"order_id": delivery.order_id, "status": delivery.status}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=80)
+    uvicorn.run(app, host="0.0.0.0", port=8089)
