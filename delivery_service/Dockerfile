@@ -10,6 +10,6 @@ COPY ./delivery_service /code
 
 COPY ./delivery_service/test.db /code/test.db
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["python", "delivery_service.py" ]
